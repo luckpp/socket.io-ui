@@ -15,6 +15,7 @@ export class EventsService {
     let eventWrapper = {
       channelName: 'message',
       event: {
+        uuid: 'temp_uid',
         name: 'messenger-default-event',
         payload: userMessage
       }
