@@ -11,7 +11,16 @@ export class EventsService {
   ) { }
 
   sendMessage(userMessage: UserMessage): Promise<any> {
-    console.log('EventsService.sendMessage()', userMessage);
-    return this._http.post('http://localhost:3123/events', userMessage).toPromise();
+
+    let eventWrapper = {
+      channelName: 'message',
+      event: {
+        name: 'messenger-default-event',
+        payload: userMessage
+      }
+    }
+
+    console.log('EventsService.sendMessage(): ', eventWrapper);
+    return this._http.post('http://localhost:3123/events', eventWrapper).toPromise();
   }
 }
