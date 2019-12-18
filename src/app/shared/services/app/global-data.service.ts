@@ -10,7 +10,7 @@ export class GlobalDataService {
   constructor(
     private _authenticationService: AuthenticationService
   ) { 
-    this.url = 'http://localhost:3123/messenger/data';
+    this.url = 'http://localhost:3123/messenger';
     this.uuid = this._authenticationService.uuid;
   }
 }
