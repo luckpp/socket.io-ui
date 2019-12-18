@@ -1,0 +1,19 @@
+$login-width: 400px;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.card {
+  min-width: $login-width;
+}
+
+@media screen and (max-width: $login-width) {
+  .card {
+    min-width: 95vw;
+  }
+}

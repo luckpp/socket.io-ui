@@ -1,0 +1,54 @@
+$default-margin: 10px;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: $default-margin;
+  width: 100vw;
+  height: 100vh;
+}
+
+.users-list {
+  min-width: 250px;
+  margin: $default-margin;
+
+  .user {
+    padding: 5px;
+  }
+
+  .user-selected {
+    background-color: rgba(117, 117, 177, 0.2);
+  }
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  margin: $default-margin;
+  
+  .content-body {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: $default-margin;
+}
+
+.edit {
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  margin-top: $default-margin;
+
+  .edit-text {
+    flex-grow: 1;
+    border: 0;
+    background-color: rgba(117, 117, 177, 0.2);
+    color: lightgray;
+    font-size: x-large;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="wrapper">
+
+  <!-- user list -->
+  <div class="card users-list">
+    <div class="card-header">
+      <h2>Users</h2>
+    </div>
+    <div class="card-body">
+      <div *ngFor="let user of users">
+        <div class="user pointer" [ngClass]="{'user-selected': user.selected}" (click)="userClick(user)">
+          <span>{{user.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div *ngIf="selectedUser" class="card content">
+    <div class="card-header">
+      <h2>Messages</h2>
+    </div>
+    <div class="card-body content-body">
+      <div class="messages">
+        <div *ngFor="let message of selectedUser.messages">
+          <h3>
+            {{ message.content }}
+          </h3>
+          <hr>
+        </div>
+      </div>
+      <div class="edit">
+        <input class="edit-text" type="text" [(ngModel)]="selectedUser.message" (keypress)="textKeypress($event)">
+        <button class="btn btn-info" (click)="sendMessage()" [disabled]="!isMessageValid()">Send</button>
+      </div>
+    </div>
+  </div>
+
+</div>
