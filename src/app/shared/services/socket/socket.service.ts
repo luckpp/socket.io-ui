@@ -47,8 +47,7 @@ export class SocketService {
   }
 
   private get connectionString(): string {
-    let uuid = this._globalDataService.uuid;
     let token = this._globalDataService.token;
-    return `${this._globalDataService.url}?uuid=${uuid}&token=${token}`;
+    return `${this._globalDataService.url}?token=${token}`;
   }
 }

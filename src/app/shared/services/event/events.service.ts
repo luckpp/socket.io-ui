@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserMessage } from 'src/app/model/user/user-message.model';
+import * as uuid from 'uuid/v1';
 
 @Injectable()
 export class EventsService {
@@ -15,7 +16,7 @@ export class EventsService {
     let eventWrapper = {
       channelName: 'message',
       event: {
-        uuid: 'temp_uid',
+        uuid: uuid(),
         name: 'messenger-default-event',
         payload: userMessage
       }
