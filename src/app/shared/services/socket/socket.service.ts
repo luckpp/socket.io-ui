@@ -19,6 +19,10 @@ export class SocketService {
       this._socket.on('connect', () => {
         resolve(true);
       });
+      this._socket.on('error', (error) => {
+        console.log('SocketService error:', error);
+        reject(error);
+      });
       
     });
   }
@@ -43,6 +47,8 @@ export class SocketService {
   }
 
   private get connectionString(): string {
-    return `${this._globalDataService.url}?uuid=${this._globalDataService.uuid}`;
+    let uuid = this._globalDataService.uuid;
+    let token = this._globalDataService.token;
+    return `${this._globalDataService.url}?uuid=${uuid}&token=${token}`;
   }
 }
