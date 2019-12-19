@@ -14,7 +14,7 @@ export class ChannelBase {
   
   public openChannel(socketDataProvider: () => SocketData) {
     let socketData = socketDataProvider();
-    let channelUrl = `${socketData.url}/${this._channelName}?token=${socketData.token}`;
+    let channelUrl = `${socketData.url}/${this._channelName}?${socketData.query}`;
     let channel = socket(channelUrl);
     channel.on('connect', () => {
       console.log(`Socket channel [${this._channelName}] connected.`);

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { EventsService, SocketService, MessageChannelService } from 'src/app/shared';
-import { Message, User } from 'src/app/model';
+import { Message, User, MessageChannelEvents } from 'src/app/model';
 import { UserMessage } from 'src/app/model/user/user-message.model';
 
 @Component({
@@ -29,10 +29,7 @@ export class MessengerDashboardComponent implements OnInit  {
   }
 
   ngOnInit() {
-    // this._socketService.on('messenger-default-event', (data) => {
-    //   console.log(data);
-    // });
-    this._messageChannelService.addListener('messenger-default-event', (ev) => {
+    this._messageChannelService.addListener(MessageChannelEvents.newMessage, (ev) => {
       console.log('Yah baby', ev);
     })
   }
@@ -81,4 +78,3 @@ export class MessengerDashboardComponent implements OnInit  {
     this.selectedUser.messages.push(userMessage);
   }
 }
-

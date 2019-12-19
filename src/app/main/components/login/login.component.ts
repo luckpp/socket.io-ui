@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _authenticationService: AuthenticationService
   ) { 
-    this.userName = 'test';
-    this.password = 'test';
+    //this.userName = 'dummyuser';
+    this.password = 'dummypassword';
   }
 
   ngOnInit() {

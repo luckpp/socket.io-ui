@@ -30,7 +30,11 @@ export class SocketService {
   private socketDataProvider(): SocketData {
     let url = this._globalDataService.url;
     let token = this._globalDataService.token;
-    let result = new SocketData(url, token);
+    let userName = this._globalDataService.userName;
+
+    let query = `token=${token}&userName=${userName}`;
+
+    let result = new SocketData(url, query);
     return result;
   }
 }

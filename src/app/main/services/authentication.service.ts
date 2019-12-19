@@ -5,14 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class AuthenticationService {
   
+  userName: string;
   isAuthenticated: boolean;
   redirectUrl: string;
 
   constructor() {
-    this.isAuthenticated = true;
+    this.isAuthenticated = false;
   }
   
   login(userName: string, password: string) {
+    this.userName = userName;
     this.isAuthenticated = true;
   }
 }
