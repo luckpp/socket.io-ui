@@ -1,53 +1,36 @@
 import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
+import * as socket from 'socket.io-client';
 import { GlobalDataService } from '../app/global-data.service';
+import { ApplicationChannelService } from './channels/application/application-channel.service';
+import { MessageChannelService } from './channels/message/message-channel.service';
+import { UserChannelService } from './channels/user/user-channel.service';
+import { SocketData } from './socket-data.model';
 
 @Injectable()
 export class SocketService {
 
-  private _socket;
+  private _io: any;
 
   constructor(
-    private _globalDataService: GlobalDataService
+    private _globalDataService: GlobalDataService,
+    private _applicationChannelService: ApplicationChannelService,
+    private _messageChannelService: MessageChannelService,
+    private _userChannelService: UserChannelService
   ) {
   }
 
-  public connect(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      this.disconnect();
-      this._socket = io(this.connectionString);
-      this._socket.on('connect', () => {
-        resolve(true);
-      });
-      this._socket.on('error', (error) => {
-        console.log('SocketService error:', error);
-        reject(error);
-      });
-      
-    });
+  public async connect(): Promise<boolean> {
+    let callback = () => this.socketDataProvider();
+    this._applicationChannelService.openChannel(callback);
+    this._messageChannelService.openChannel(callback);
+    this._userChannelService.openChannel(callback);
+    return Promise.resolve(true);
   }
 
-  public disconnect() {
-    if (this._socket) {
-      this._socket.close();
-      this._socket.removeAllListeners();
-    }
-  }
-
-  public emit(event, payload) {
-    this._socket.emit(event, payload);
-  }
-
-  public on(event, callback) {
-    this._socket.on(event, callback);
-  }
-
-  public off(event, callback) {
-    this._socket.off(event, callback);
-  }
-
-  private get connectionString(): string {
+  private socketDataProvider(): SocketData {
+    let url = this._globalDataService.url;
     let token = this._globalDataService.token;
-    return `${this._globalDataService.url}?token=${token}`;
+    let result = new SocketData(url, token);
+    return result;
   }
 }

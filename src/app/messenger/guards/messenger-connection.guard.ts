@@ -24,6 +24,5 @@ export class MessengerConnectionGuard implements CanActivate {
         reject(error);
       }
     });
-    return true;
   }
 }
