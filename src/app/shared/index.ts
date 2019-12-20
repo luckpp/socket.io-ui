@@ -4,3 +4,6 @@ export { ApplicationChannelService } from './services/socket/channels/applicatio
 export { MessageChannelService } from './services/socket/channels/message/message-channel.service';
 export { UserChannelService } from './services/socket/channels/user/user-channel.service';
 export { GlobalDataService } from './services/app/global-data.service';
+export { UsersService } from './services/api/users.service';
+export { UsersResolverService } from './services/resolvers/user/users-resolver.service';
+export { ChannelNames } from './services/socket/channels/channel.names';

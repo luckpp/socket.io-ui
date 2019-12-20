@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { EventsService, SocketService, MessageChannelService } from 'src/app/shared';
-import { Message, User, MessageChannelEvents } from 'src/app/model';
+import { EventsService, SocketService, MessageChannelService, UsersService, UserChannelService } from 'src/app/shared';
+import { Message, User, MessageChannelEvents, UserChannelEvents } from 'src/app/model';
 import { UserMessage } from 'src/app/model/user/user-message.model';
 
 @Component({
@@ -16,22 +16,21 @@ export class MessengerDashboardComponent implements OnInit  {
   constructor(
     public _eventsService: EventsService,
     public _socketService: SocketService,
-    public _messageChannelService: MessageChannelService
+    public _userChannelService: UserChannelService,
+    public _messageChannelService: MessageChannelService,
+    private _usersService: UsersService
   ) {
-    this.users = [
-      new User('Johnny', [new UserMessage('Hello'), new UserMessage('ma man!')]),
-      new User('Bravo'),
-      new User('Marlon'),
-      new User('Brando')
-    ];
-    this.users[0].selected = true;
-    this.selectedUser = this.users[0];
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this._messageChannelService.addListener(MessageChannelEvents.newMessage, (ev) => {
-      console.log('Yah baby', ev);
-    })
+      console.log(MessageChannelEvents.newMessage, ev);
+    });
+    this._userChannelService.addListener<UsersChangedEvent>(UserChannelEvents.usersChanged, (ev) => {
+      console.log(UserChannelEvents.usersChanged, ev);
+      this.users =  ev.users;
+    });
+    this.users = await this._usersService.getUsers();
   }
 
   userClick(clickedUser: User) {
@@ -77,4 +76,8 @@ export class MessengerDashboardComponent implements OnInit  {
     }
     this.selectedUser.messages.push(userMessage);
   }
+}
+
+export class UsersChangedEvent {
+  users: User[]
 }

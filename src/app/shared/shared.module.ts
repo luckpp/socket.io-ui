@@ -8,6 +8,7 @@ import { GlobalDataService } from './services/app/global-data.service';
 import { ApplicationChannelService } from './services/socket/channels/application/application-channel.service';
 import { MessageChannelService } from './services/socket/channels/message/message-channel.service';
 import { UserChannelService } from './services/socket/channels/user/user-channel.service';
+import { UsersService } from './services/api/users.service';
 
 @NgModule({
   declarations: [],
@@ -22,7 +23,8 @@ import { UserChannelService } from './services/socket/channels/user/user-channel
     SocketService,
     ApplicationChannelService,
     MessageChannelService,
-    UserChannelService
+    UserChannelService,
+    UsersService
   ]
 })
 export class SharedModule { }
