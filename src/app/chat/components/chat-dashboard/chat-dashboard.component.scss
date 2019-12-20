@@ -1,0 +1,15 @@
+$default-margin: 10px;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: $default-margin;
+  width: 100vw;
+  height: 100vh;
+  align-items: stretch;
+}
+
+.tabset {
+  margin: $default-margin;
+  flex: 1;
+}

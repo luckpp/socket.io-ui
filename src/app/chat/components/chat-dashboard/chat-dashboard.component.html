@@ -1,1 +1,9 @@
-<p>chat-dashboard works!</p>
+<div class="wrapper">
+  <tabset class="tabset">
+    <tab *ngFor="let chatRoom of chatRooms" [heading]="chatRoom.name">
+      <div>
+        <span>Content for {{chatRoom.name}}</span>
+      </div>
+    </tab>
+  </tabset>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { EventsService, SocketService, MessageChannelService, UsersService, UserChannelService } from 'src/app/shared';
+import { EventsService, SocketService, MessageChannelService, UsersService, UserChannelService, GlobalDataService } from 'src/app/shared';
 import { Message, User, MessageChannelEvents, UserChannelEvents } from 'src/app/model';
 import { UserMessage } from 'src/app/model/user/user-message.model';
 
@@ -14,10 +14,10 @@ export class MessengerDashboardComponent implements OnInit  {
   selectedUser: User;
 
   constructor(
-    public _eventsService: EventsService,
-    public _socketService: SocketService,
-    public _userChannelService: UserChannelService,
-    public _messageChannelService: MessageChannelService,
+    private _eventsService: EventsService,
+    private _globalDataService: GlobalDataService,
+    private _userChannelService: UserChannelService,
+    private _messageChannelService: MessageChannelService,
     private _usersService: UsersService
   ) {
   }
@@ -67,8 +67,12 @@ export class MessengerDashboardComponent implements OnInit  {
   async sendMessage() {
     let message = this.selectedUser.message;
     let toUserName = this.selectedUser.name;
+    let fromUserName = this._globalDataService.userName;
+
     let userMessage = new UserMessage(message);
     userMessage.toUserName = toUserName;
+    userMessage.fromUserName = fromUserName;
+
     await this._eventsService.sendMessage(userMessage);
     this.selectedUser.message = null;
     if (!this.selectedUser.messages) {

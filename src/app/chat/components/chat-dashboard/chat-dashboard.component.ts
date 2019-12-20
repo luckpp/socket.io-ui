@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatRoom } from '../../model/chat-room.model';
 
 @Component({
   selector: 'app-chat-dashboard',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatDashboardComponent implements OnInit {
 
-  constructor() { }
+  chatRooms: ChatRoom[];
+
+  constructor() { 
+    this.chatRooms = [
+      new ChatRoom('Red'),
+      new ChatRoom('Green'),
+      new ChatRoom('Blue')
+    ]
+  }
 
   ngOnInit() {
   }
