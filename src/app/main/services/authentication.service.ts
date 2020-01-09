@@ -10,7 +10,7 @@ export class AuthenticationService {
   redirectUrl: string;
 
   constructor() {
-    this.isAuthenticated = true;
+    this.isAuthenticated = false;
   }
   
   login(userName: string, password: string) {

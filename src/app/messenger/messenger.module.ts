@@ -7,10 +7,12 @@ import { MessengerDashboardComponent } from './components/messenger-dashboard/me
 import { SharedModule } from '../shared/shared.module';
 import { ModelModule } from '../model/model.module';
 import { MessengerConnectionGuard } from './guards/messenger-connection.guard';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { MessageAreaComponent } from './components/message-area/message-area.component';
 
 
 @NgModule({
-  declarations: [MessengerDashboardComponent],
+  declarations: [MessengerDashboardComponent, UserListComponent, MessageAreaComponent],
   imports: [
     CommonModule,
     MessengerRoutingModule,

@@ -70,8 +70,8 @@ export class MessengerDashboardComponent implements OnInit  {
     let fromUserName = this._globalDataService.userName;
 
     let userMessage = new UserMessage(message);
-    userMessage.toUserName = toUserName;
     userMessage.fromUserName = fromUserName;
+    userMessage.toUserName = toUserName;
 
     await this._eventsService.sendMessage(userMessage);
     this.selectedUser.message = null;
