@@ -8,7 +8,7 @@ export class ChannelBase {
   private _channelName: ChannelNames;
   private _channel: any;
 
-  constructor(channelName: ChannelNames, ) {
+  constructor(channelName: ChannelNames) {
     this._channelName = channelName;
   }
   

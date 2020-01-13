@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as socket from 'socket.io-client';
 import { GlobalDataService } from '../app/global-data.service';
 import { ApplicationChannelService } from './channels/application/application-channel.service';
 import { MessageChannelService } from './channels/message/message-channel.service';
